@@ -3,8 +3,9 @@ import { InputHandler } from "./input";
 import { Background } from "./background";
 window.addEventListener("load", function () {
     const canvas = this.document.getElementById("canvas1");
+    const game_zone = this.document.getElementById("game_zone");
     const ctx = canvas.getContext("2d");
-    canvas.width = 500;
+    canvas.width = game_zone.clientWidth;
     canvas.height = 500;
     class Game {
         constructor(width, height) {

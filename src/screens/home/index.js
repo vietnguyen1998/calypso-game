@@ -9,15 +9,9 @@ import img_layer4 from '../../images/layer-4.png'
 import img_layer5 from '../../images/layer-5.png'
 
 function App() {
-
-    React.useEffect(() => {
-        const canvas = document.getElementById("canvas1");
-    }, [])
-
     return (
         <div>
             {/* code map here */}
-            NotFound Home
 
             <canvas id="canvas1"></canvas>
             <img id="player" alt="player" src={img_player}></img>
