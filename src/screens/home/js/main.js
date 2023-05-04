@@ -11,16 +11,16 @@ window.addEventListener("load", function () {
         constructor(width, height) {
             this.width = width;
             this.height = height;
-            this.groundMargin = 85;
+            this.groundMargin = 80;
             this.player = new Player(this);
             this.input = new InputHandler(this);
             this.background = new Background(this);
             this.speed = 3;
         }
 
-        update() {
+        update(deltaTime) {
             this.background.update();
-            this.player.update(this.input.keys);
+            this.player.update(this.input.keys, deltaTime);
         }
 
         draw(context) {
@@ -31,13 +31,14 @@ window.addEventListener("load", function () {
 
     const game = new Game(canvas.width, canvas.height);
     console.log(game);
-
-    function animate() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height)
-        game.update();
+let lastTime =0;
+    function animate(timeStamp) {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        const deltaTime = timeStamp - lastTime;
+        game.update(deltaTime);
         game.draw(ctx);
         requestAnimationFrame(animate);
     }
 
-    animate();
+    animate(0);
 })
