@@ -6,7 +6,20 @@ import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
 import './App.css'
+import coin_image from './images/coin.png'
+import { Divider } from '@mui/material';
+import StickyHeadTable from "./comps/Table";
+
+const darkTheme = createTheme({
+  palette: {
+    mode: 'dark',
+  },
+});
+
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -17,30 +30,33 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 export default function App() {
   return (
-    <div className="h-full">
-      {/* Routes nest inside one another. Nested route paths build upon
+    <ThemeProvider theme={darkTheme}>
+      <CssBaseline />
+      <div className="h-full">
+        {/* Routes nest inside one another. Nested route paths build upon
             parent route paths, and nested route elements render inside
             parent route elements. See the note about <Outlet> below. */}
-      <Routes className="h-full">
-        <Route path="/" element={<Layout />}>
-          <Route index element={<Home />} />
-          <Route path="about" element={<About />} />
-          <Route path="dashboard" element={<Dashboard />} />
-          <Route path="*" element={<NoMatch />} />
-        </Route>
-      </Routes>
-    </div>
+        <Routes className="h-full">
+          <Route path="/" element={<Layout />}>
+            <Route index element={<Home />} />
+            <Route path="about" element={<About />} />
+            <Route path="dashboard" element={<Dashboard />} />
+            <Route path="*" element={<NoMatch />} />
+          </Route>
+        </Routes>
+      </div>
+    </ThemeProvider>
   );
 }
 
 function Layout() {
   return (
-    <div class="h-full" style={{background: "#0D0D3F"}}>
+    <div class="h-full" style={{ background: "#0D0D3F" }}>
       {/* A "layout route" is a good place to put markup you want to
           share across all the pages on your site, like navigation. */}
       <header>
-        <nav class="bg-white border-gray-200 px-4 lg:px-6 py-2.5 dark:bg-gray-800" style={{ background: "#0D0D3F" }}>
-          <div class="flex flex-wrap justify-between items-center mx-auto">
+        <nav class="bg-white border-gray-200 px-4 lg:px-6 py-2.5 " style={{ background: "#0D0D3F" }}>
+          <div class="flex flex-wrap justify-between items-center mx-auto max-w-screen-2xl">
             <a href="https://flowbite.com" class="flex items-center">
               <img src="https://flowbite.com/docs/images/logo.svg" class="mr-3 h-6 sm:h-9" alt="Flowbite Logo" />
               <ul class="flex flex-col mt-4 font-medium lg:flex-row lg:space-x-8 lg:mt-0">
@@ -88,22 +104,50 @@ function Layout() {
           so you can think about this <Outlet> as a placeholder for
           the child routes we defined above. */}
       <body class="">
-        <nav class="h-full border-gray-200 px-4 lg:px-6 py-2.5 dark:bg-gray-800">
-          <div class="flex h-full ">
+        <nav class="h-full border-gray-200 px-4 lg:px-6 py-2.5 " style={{ background: "#0D0D3F"}}>
+          <div class="flex h-full max-w-screen-2xl mx-auto">
             <div id="h-full  h-full" style={{ width: "100%" }}>
               <div className="h-full">
                 <div className="" id="game_zone">
-
-                <Outlet />
+                  <Outlet />
                 </div>
-                <div className="bg-blue-300" style={{height: 200}}>
-                  x
+                <div className="h-full mt-4" >
+                 <StickyHeadTable />
                 </div>
               </div>
             </div>
             <div className="ml-6 h-full" style={{ width: 600 }}>
-              <div className="h-full" id="rightBackground" >
-                x
+              <div className="h-full w-full px-6 py-4" id="rightBackground" >
+                <img src={coin_image} alt="coin" className="mt-2 mb-4"/>
+                <Divider />
+                <p className="text-white mb-2 mt-8">Bet amount (0.01-2,000)</p>
+                <TextField
+                  required
+                  id="outlined-required"
+                  className="w-full"
+                  size="medium"
+                  defaultValue="0.01"
+                />
+                <div className="mt-2 flex items-center mb-6">
+                  <Button variant="text" style={{background: "#090B3D"}}>Clear</Button>
+                  <Button variant="text" style={{background: "#090B3D", margin: "0px 12px"}}>+10</Button>
+                  <Button variant="text"  style={{background: "#090B3D"}} className="my-2">+100</Button>
+                  <Button variant="text" style={{background: "#090B3D", margin: "0px 12px"}}> +1k</Button>
+                  <Button variant="text"  style={{background: "#090B3D"}} className="my-2">x2</Button>
+                </div>
+                <p className="text-white mb-2">Auto cashout (min 1.1)</p>
+                <TextField
+                  required
+                  id="outlined-required"
+                  className="w-full"
+                  defaultValue="1.1"
+                />
+                <Button
+                  className="w-full rounded mt-8"
+                  size="large"
+                  style={{borderRadius: 50, marginTop: 20, fontWeight: "bold", height: 48}}
+                  color="warning"
+                  variant="contained">Play</Button>
               </div>
             </div>
           </div>

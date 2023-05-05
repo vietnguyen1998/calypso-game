@@ -6,12 +6,12 @@ export function eventCanvas(_canvas) {
     const game_zone = document.getElementById("game_zone");
     const ctx = canvas.getContext("2d");
     canvas.width = game_zone.clientWidth;
-    canvas.height = 600;
+    canvas.height = game_zone.clientWidth/2;
     class Game {
         constructor(width, height) {
             this.width = width;
             this.height = height;
-            this.groundMargin = 80;
+            this.groundMargin = 0;
             this.player = new Player(this);
             this.input = new InputHandler(this);
             this.background = new Background(this);
@@ -31,7 +31,7 @@ export function eventCanvas(_canvas) {
 
     const game = new Game(canvas.width, canvas.height);
     console.log(game);
-let lastTime =0;
+    let lastTime = 0;
     function animate(timeStamp) {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         const deltaTime = timeStamp - lastTime;

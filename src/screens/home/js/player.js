@@ -28,8 +28,13 @@ export class Player {
         // this.x++;
         // this.y--;
         this.x += this.speed;
-        if (input.includes("ArrowRight")) this.speed = this.maxSpeed;
-        else if (input.includes("ArrowLeft")) this.speed = -this.maxSpeed;
+        this.y += -this.speed/2;
+        if (input.includes("ArrowRight")) {
+            this.speed = this.maxSpeed;
+        }
+        else if (input.includes("ArrowLeft")){
+            this.speed = -this.maxSpeed;
+        }
         else this.speed = 0;
 
         if (this.x < 0) this.x = 0;
@@ -38,8 +43,8 @@ export class Player {
         //vertical move
         // if (input.includes("ArrowUp") && this.onGround()) this.vy -= 30;
         this.y += this.vy;
-        if (!this.onGround()) this.vy += this.weight;
-        else this.vy = 0;
+        // if (!this.onGround()) this.vy += this.weight;
+        // else this.vy = 0;
 
         if (this.frameTimer > this.frameInterval) {
             this.frameTimer = 0;
@@ -48,7 +53,6 @@ export class Player {
         } else {
             this.frameTimer += deltaTime;
         }
-
     }
 
     onGround() {
