@@ -1,12 +1,12 @@
 import { Player } from "./player";
 import { InputHandler } from "./input";
 import { Background } from "./background";
-window.addEventListener("load", function () {
-    const canvas = this.document.getElementById("canvas1");
-    const game_zone = this.document.getElementById("game_zone");
+export function eventCanvas(_canvas) {
+    const canvas = _canvas;
+    const game_zone = document.getElementById("game_zone");
     const ctx = canvas.getContext("2d");
     canvas.width = game_zone.clientWidth;
-    canvas.height = 500;
+    canvas.height = 600;
     class Game {
         constructor(width, height) {
             this.width = width;
@@ -41,4 +41,4 @@ let lastTime =0;
     }
 
     animate(0);
-})
+}
