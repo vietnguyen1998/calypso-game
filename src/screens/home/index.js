@@ -5,8 +5,8 @@ import img_player from '../../images/player.png'
 import img_layer1 from '../../images/layer-1.png'
 import img_layer2 from '../../images/layer-2.png'
 import img_layer3 from '../../images/layer-3.png'
-import img_layer4 from '../../images/Background1.png'
-import img_layer5 from '../../images/layer-5.png'
+import img_layer4 from '../../images/layer-5.png'
+import img_layer5 from '../../images/Background1.png'
 import { eventCanvas } from "./js/main";
 function App() {
     const canvasRef = React.useRef(null);

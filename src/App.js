@@ -6,6 +6,7 @@ import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
+import './App.css'
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -34,7 +35,7 @@ export default function App() {
 
 function Layout() {
   return (
-    <div class="h-full">
+    <div class="h-full" style={{background: "#0D0D3F"}}>
       {/* A "layout route" is a good place to put markup you want to
           share across all the pages on your site, like navigation. */}
       <header>
@@ -101,7 +102,7 @@ function Layout() {
               </div>
             </div>
             <div className="ml-6 h-full" style={{ width: 600 }}>
-              <div className="bg-green-100 h-full	">
+              <div className="h-full" id="rightBackground" >
                 x
               </div>
             </div>
