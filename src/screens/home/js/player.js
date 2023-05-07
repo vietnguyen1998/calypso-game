@@ -5,8 +5,9 @@ export class Player {
         this.game = game;
         this.width = 100;
         this.height = 91.3;
-        this.x = 0;
-        this.y = this.game.height - this.height - this.game.groundMargin;
+        this.x = 205;
+        this.y = 352.5;
+        // this.y = this.game.height - this.height - this.game.groundMargin;
         this.vy = 0;
         this.weight = 1;
         this.image = document.getElementById("player");
@@ -29,6 +30,7 @@ export class Player {
         // this.y--;
         this.x += this.speed;
         this.y += -this.speed/2;
+        debugger
         if (input.includes("ArrowRight")) {
             this.speed = this.maxSpeed;
         }
