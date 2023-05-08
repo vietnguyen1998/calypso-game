@@ -44,9 +44,9 @@ export class Running extends State {
 
     handleInput(input) {
         if (input.includes("ArrowDown")) {
-            this.player.setState(states.RUNNING);
+            // this.player.setState(states.RUNNING);
         } else if (input.includes("ArrowUp")) {
-            this.player.setState(states.JUMPING);
+            // this.player.setState(states.JUMPING);
         }
     }
 }

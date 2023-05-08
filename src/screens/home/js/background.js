@@ -22,7 +22,7 @@ class Layer {
 }
 
 class Layer2 {
-    constructor(game, width, height, x, y, speedModifier, image) {
+    constructor(game, width, height, x, y, speedModifier, image, name) {
         this.game = game;
         this.width = width;
         this.height = height;
@@ -32,6 +32,7 @@ class Layer2 {
         this.y = y;
         this.savePositionX = x;
         this.savePositionY = y;
+        this.name = name;
     }
 
     update() {
@@ -41,8 +42,8 @@ class Layer2 {
             this.y = this.game.height - 548.5 - 30;
         }
         else {
-            this.x -= 2;
-            this.y += 1;
+            this.x -= 2 * this.speedModifier;
+            this.y += 1 * this.speedModifier;
         }
     }
     draw(context) {
@@ -65,18 +66,18 @@ export class Background {
         // this.layer2 = new Layer(this.game, this.width, this.height, 1, this.layer2image);
         // this.layer3 = new Layer(this.game, this.width, this.height, 1, this.layer3image);
         this.layer4 = new Layer(this.game, this.width, this.height, 1, this.layer4image);
-        this.layer5 = new Layer2(this.game, 96, 648, 96 * 0, this.height - 15, 1, this.layer5image);
-        this.layer6 = new Layer2(this.game, 96, 648, 96 * 1, this.height - 63.5, 1, this.layer5image);
-        this.layer7 = new Layer2(this.game, 96, 648, 96 * 2, this.height - 112, 1, this.layer5image);
-        this.layer8 = new Layer2(this.game, 96, 648, 96 * 3, this.height - 160.5, 1, this.layer5image);
-        this.layer9 = new Layer2(this.game, 96, 648, 96 * 4, this.height - 209, 1, this.layer5image);
-        this.layer10 = new Layer2(this.game, 96, 648, 96 * 5, this.height - 257.5, 1, this.layer5image);
-        this.layer11 = new Layer2(this.game, 96, 648, 96 * 6, this.height - 306, 1, this.layer5image);
-        this.layer12 = new Layer2(this.game, 96, 648, 96 * 7, this.height - 354.5, 1, this.layer5image);
-        this.layer13 = new Layer2(this.game, 96, 648, 96 * 8, this.height - 403, 1, this.layer5image);
-        this.layer14 = new Layer2(this.game, 96, 648, 96 * 9, this.height - 451.5, 1, this.layer5image);
-        this.layer15 = new Layer2(this.game, 96, 648, 96 * 10, this.height - 500, 1, this.layer5image);
-        this.layer16 = new Layer2(this.game, 96, 648, 96 * 11, this.height - 548.5, 1, this.layer5image);
+        this.layer5 = new Layer2(this.game, 96, 648, 96 * 0, this.height - 15, 1, this.layer5image, "layer5");
+        this.layer6 = new Layer2(this.game, 96, 648, 96 * 1, this.height - 63.5, 1, this.layer5image, "layer6");
+        this.layer7 = new Layer2(this.game, 96, 648, 96 * 2, this.height - 112, 1, this.layer5image, "layer7");
+        this.layer8 = new Layer2(this.game, 96, 648, 96 * 3, this.height - 160.5, 1, this.layer5image, "layer8");
+        this.layer9 = new Layer2(this.game, 96, 648, 96 * 4, this.height - 209, 1, this.layer5image, "layer9");
+        this.layer10 = new Layer2(this.game, 96, 648, 96 * 5, this.height - 257.5, 1, this.layer5image, "layer10");
+        this.layer11 = new Layer2(this.game, 96, 648, 96 * 6, this.height - 306, 1, this.layer5image, "layer11");
+        this.layer12 = new Layer2(this.game, 96, 648, 96 * 7, this.height - 354.5, 1, this.layer5image, "layer12");
+        this.layer13 = new Layer2(this.game, 96, 648, 96 * 8, this.height - 403, 1, this.layer5image, "layer5=13");
+        this.layer14 = new Layer2(this.game, 96, 648, 96 * 9, this.height - 451.5, 1, this.layer5image, "layer14");
+        this.layer15 = new Layer2(this.game, 96, 648, 96 * 10, this.height - 500, 1, this.layer5image, "layer15");
+        this.layer16 = new Layer2(this.game, 96, 648, 96 * 11, this.height - 548.5, 1, this.layer5image, "layer16");
         this.backgroundLayers = [this.layer4, this.layer5, this.layer6, this.layer7, this.layer8, this.layer9,this.layer10, this.layer11, this.layer12, this.layer13, this.layer14, this.layer15, this.layer16];
     }
     update() {
