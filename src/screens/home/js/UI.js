@@ -10,42 +10,41 @@ export class UI {
     }
 
     draw(context) {
-        context.save();
         // context.shadowOffsetX = 2;
         // context.shadowOffsetY = 2;
         // context.shadowColor = "white";
         // context.shadowBlur = 0;
+        context.save();
         context.font = this.fontSize + "px " + this.fontFamily;
         context.textAlign = "center";
         context.fillStyle = this.game.fontColor;
         context.fillText((this.game.time * 0.001).toFixed(2) + " x", this.game.width / 2, this.game.height / 2 - 50)
 
-        if (this.game.gameOver) {
-            var fiveMinutes = 5;
-            startTimer(fiveMinutes, context,this.game, this.fontSize, this.fontFamily);
+        var no = 10;//  w  w w  .  j  av  a  2  s .co  m
+        var pointToFill = 4.72;
+        var diff;
+        function fillCounter(context, game) {
+            diff = ((no / 10) * Math.PI * 2 * 10);
+            context.clearRect(0, 0, game.width, game.height);
+            context.lineWidth = 15;
+            context.fillStyle = '#000';
+            context.strokeStyle = '#F5E0A9';
+            context.textAlign = 'center';
+            context.font = "25px monospace";
+            context.fillText(no + 'sec', 100, 110);
+            context.beginPath();
+            context.arc(100, 100, 90, pointToFill, diff / 10 + pointToFill);
+            context.stroke();
+            if (no == 0) {
+                clearTimeout(fill);
+                context.fillStyle = '#FFF';
+                context.fillRect(0, 0, game.width, game.height);
+                context.fillStyle = '#000';
+                context.fillText('Times up', 100, 110);
+            }
+            no--;
         }
-        context.clean();
+        var fill = setInterval(() => fillCounter(context, this.game), 1000);
+        context.restore();
     }
-}
-
-function startTimer(duration, context, game, fontSize, fontFamily) {
-    var timer = duration, minutes, seconds;
-    setInterval(function () {
-        context.save();
-        minutes = parseInt(timer / 60, 10);
-        seconds = parseInt(timer % 60, 10);
-
-        minutes = minutes < 10 ? "0" + minutes : minutes;
-        seconds = seconds < 10 ? "0" + seconds : seconds;
-
-        context.textAlign = "center";
-        context.fillStyle = game.fontColor;
-        context.font = fontSize * 1.5 + "px " + fontFamily;
-        context.fillText("New game start in " + seconds, game.width / 2, game.height / 2)
-
-        if (--timer < 0) {
-            timer = duration;
-        }
-        context.clean();
-    }, 1000);
 }

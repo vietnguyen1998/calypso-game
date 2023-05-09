@@ -19,7 +19,7 @@ export function eventCanvas(_canvas) {
             this.UI = new UI(this);
             this.speed = 3;
             this.time = 0;
-            this.maxTime = 100000;
+            this.maxTime = 2000;
             this.gameOver = false;
             this.fontColor = "black";
         }
