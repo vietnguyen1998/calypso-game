@@ -1,6 +1,7 @@
 import { Player } from "./player";
 import { InputHandler } from "./input";
 import { Background } from "./background";
+import { UI } from "./UI";
 export function eventCanvas(_canvas) {
     const canvas = _canvas;
     const game_zone = document.getElementById("game_zone");
@@ -15,10 +16,19 @@ export function eventCanvas(_canvas) {
             this.player = new Player(this);
             this.input = new InputHandler(this);
             this.background = new Background(this);
+            this.UI = new UI(this);
             this.speed = 3;
+            this.time = 0;
+            this.maxTime = 100000;
+            this.gameOver = false;
+            this.fontColor = "black";
         }
 
         update(deltaTime) {
+            this.time += deltaTime;
+            if(this.time > this.maxTime){
+                this.gameOver = true;   
+            }
             this.background.update();
             this.player.update(this.input.keys, deltaTime);
         }
@@ -26,6 +36,7 @@ export function eventCanvas(_canvas) {
         draw(context) {
             this.background.draw(context);
             this.player.draw(context);
+            this.UI.draw(context);
         }
     }
 
@@ -37,7 +48,7 @@ export function eventCanvas(_canvas) {
         const deltaTime = timeStamp - lastTime;
         game.update(deltaTime);
         game.draw(ctx);
-        requestAnimationFrame(animate);
+        if(!game.gameOver) requestAnimationFrame(animate);
     }
 
     animate(0);
